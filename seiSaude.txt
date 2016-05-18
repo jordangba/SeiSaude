@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/ -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="949" y="820" name="Historico_Tratamento_Usuario">
+<row name="historico_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Tratamento" row="tratamento_id" />
+</row>
+<row name="feedback" null="0" autoincrement="0">
+<datatype>CHAR(512)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>historico_id</part>
+</key>
+</table>
+<table x="714" y="932" name="Usuario">
+<row name="usuario_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<relation table="Historico_Tratamento_Usuario" row="historico_id" />
+</row>
+<row name="nome_usuario" null="0" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+</row>
+<row name="senha_usuario" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>usuario_id</part>
+</key>
+</table>
+<table x="854" y="582" name="Tratamento">
+<row name="tratamento_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Males" row="males_id" />
+<relation table="Pesquisa" row="pesquisa_id" />
+<relation table="Elementos_tratamento" row="elementoTratamento_id" />
+</row>
+<row name="descrição_tratamento" null="0" autoincrement="0">
+<datatype>CHAR(512)</datatype>
+</row>
+<row name="efeito_tratamento" null="1" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>tratamento_id</part>
+</key>
+</table>
+<table x="545" y="741" name="Pesquisa">
+<row name="pesquisa_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Fonte_pesquisa" null="0" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+</row>
+<row name="Origem_pesquisa" null="0" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>pesquisa_id</part>
+</key>
+</table>
+<table x="1093" y="553" name="Males">
+<row name="males_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="Sintoma" row="sintoma_id" />
+<relation table="Estado" row="estado_id" />
+<relation table="Doença" row="doença_id" />
+</row>
+<row name="Nome_male" null="1" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+<default>NULL</default></row>
+<row name="Descrição_males" null="1" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>males_id</part>
+</key>
+<comment>(enfermidades)</comment>
+</table>
+<table x="1492" y="433" name="Sintoma">
+<row name="sintoma_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descrição_sintoma" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>sintoma_id</part>
+</key>
+</table>
+<table x="1335" y="615" name="Estado">
+<row name="estado_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descrição_estado" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>estado_id</part>
+</key>
+</table>
+<table x="1342" y="758" name="Doença">
+<row name="doença_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<relation table="Sintoma" row="sintoma_id" />
+</row>
+<row name="Nome_doença" null="1" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+<default>NULL</default></row>
+<row name="descrição_doença" null="1" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>doença_id</part>
+</key>
+</table>
+<table x="679" y="329" name="Elemento">
+<row name="elemento_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+<relation table="comportamento" row="comportamento_id" />
+<relation table="Compomentes" row="compomentes_id" />
+<relation table="Produto" row="Produto_id" />
+</row>
+<row name="nome_elemento" null="1" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+<default>NULL</default></row>
+<row name="descrição_elemento" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>elemento_id</part>
+</key>
+</table>
+<table x="936" y="400" name="Elementos_tratamento">
+<row name="elementoTratamento_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="Elemento" row="elemento_id" />
+</row>
+<key type="PRIMARY" name="">
+<part>elementoTratamento_id</part>
+</key>
+</table>
+<table x="315" y="142" name="comportamento">
+<row name="comportamento_id" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="nome_comportamento" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="tipo_comportamento" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="descrição_comportamento" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>comportamento_id</part>
+</key>
+</table>
+<table x="305" y="332" name="Compomentes">
+<row name="compomentes_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="Contra_indicações" row="contra_indicações_id" />
+</row>
+<row name="Nome" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="Efeito_compomentes" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+<default>'NULL'</default></row>
+<row name="descrição_compomentes" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+<default>'NULL'</default></row>
+<row name="reação_compomentes" null="0" autoincrement="0">
+<datatype>CHAR(128)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>compomentes_id</part>
+<part>Nome</part>
+</key>
+</table>
+<table x="10" y="358" name="Contra_indicações">
+<row name="contra_indicações_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Nome_contra_indicações" null="1" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+<default>NULL</default></row>
+<row name="descrição_contra_indicação" null="1" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>contra_indicações_id</part>
+</key>
+</table>
+<table x="330" y="522" name="Produto">
+<row name="Produto_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="Alimento" row="alimento_id" />
+<relation table="Remedio" row="remedio_id" />
+<relation table="Compomentes" row="compomentes_id" />
+</row>
+<row name="nome_produto" null="0" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+</row>
+<row name="Dosagem_produto" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>Produto_id</part>
+</key>
+</table>
+<table x="349" y="816" name="Remedio">
+<row name="remedio_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descrição_remedio" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<row name="NomeCientifico_remedio" null="0" autoincrement="0">
+<datatype>CHAR(64)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>remedio_id</part>
+</key>
+</table>
+<table x="346" y="698" name="Alimento">
+<row name="alimento_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="descrição_alimento" null="0" autoincrement="0">
+<datatype>CHAR(256)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>alimento_id</part>
+</key>
+</table>
+</sql>
